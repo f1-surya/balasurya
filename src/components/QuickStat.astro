@@ -1,0 +1,20 @@
+---
+interface Props {
+  src: string;
+  value: string;
+  label: string;
+}
+import { Image } from "astro:assets";
+
+const { src, value, label } = Astro.props;
+---
+
+<div class="flex flex-col items-center gap-2">
+  <div
+    class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-blue-500/10"
+  >
+    <Image src={src} width="30" height="30" alt="Stat icon" loading="eager" />
+  </div>
+  <h3 class="font-bold">{value}</h3>
+  <p class="text-base">{label}</p>
+</div>

@@ -1,0 +1,21 @@
+---
+import { Image } from "astro:assets";
+const { href, icon } = Astro.props;
+---
+
+<a href={href} target="_blank">
+  <Image
+    class="links"
+    src={icon}
+    alt="social media link"
+    width="25"
+    height="25"
+    loading="eager"
+  />
+</a>
+<style>
+  .links {
+    border-radius: 5px;
+    color: rgb(var(--gray-dark));
+  }
+</style>
