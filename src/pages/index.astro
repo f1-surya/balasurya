@@ -10,18 +10,20 @@ import QuickStat from "../components/QuickStat.astro";
 import Chip from "../components/Chip.astro";
 import Experience from "../components/Experience.astro";
 import Interest from "../components/Interest.astro";
+import Background from "../components/Background.astro";
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth antialiased">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
   </head>
   <body>
+    <Background />
     <Header />
     <main>
       <section
-        class="text-center flex flex-col items-center justify-center gap-2 md:w-[700px]"
+        class="text-center flex flex-col items-center justify-center gap-2 md:w-[720px]"
       >
         <Image
           src="/MyPic.jpeg"
@@ -58,7 +60,7 @@ import Interest from "../components/Interest.astro";
             icon="/icons/bluesky.svg"
           />
         </div>
-        <p>
+        <p class="px-1 md:px-0">
           Software Developer from Tamilnadu, India with 2+ years of experience
           in web technologies. Passionate about Formula 1, sports cars, and
           creating efficient software solutions.
@@ -72,7 +74,7 @@ import Interest from "../components/Interest.astro";
         <QuickStat src="/braces.svg" value="7" label="Coding langs" />
         <QuickStat src="/layers.svg" value="5" label="Frameworks" />
       </section>
-      <section class="w-full py-20 px-4">
+      <section class="w-full py-20 px-4 md:px-48">
         <h2 class="font-bold">Skills</h2>
         <h5 class="font-bold text-[--gray-light] m-2">Programming languages</h5>
         <div class="flex flex-row flex-wrap gap-2">
@@ -104,7 +106,7 @@ import Interest from "../components/Interest.astro";
           }
         </div>
       </section>
-      <section class="section py-4 flex flex-col">
+      <section class="section flex flex-col">
         <h2 class="font-bold">Experience</h2>
         <div class="flex flex-col md:grid md:grid-cols-2 mt-2">
           <Experience
@@ -119,7 +121,7 @@ import Interest from "../components/Interest.astro";
           />
         </div>
       </section>
-      <section class="p-4">
+      <section class="px-4 py-12 md:px-48">
         <h2 class="font-bold">Interests</h2>
         <div class="flex flex-col md:grid md:grid-cols-2 mt-2">
           <Interest
