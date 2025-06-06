@@ -82,10 +82,10 @@ import Background from "../components/Background.astro";
             [
               "Typescript",
               "Javascript",
-              "Go",
-              "Dart",
               "Java",
+              "Go",
               "Kotlin",
+              "Dart",
               "Python",
             ].map((lang) => <Chip>{lang}</Chip>)
           }
@@ -123,7 +123,7 @@ import Background from "../components/Background.astro";
       </section>
       <section class="px-4 py-12 md:px-48">
         <h2 class="font-bold">Interests</h2>
-        <div class="flex flex-col md:grid md:grid-cols-2 mt-2">
+        <ul class="flex flex-col md:grid md:grid-cols-2 mt-2">
           <Interest
             title="Cars"
             description="Love european sports cars like Porsche, Koenigsegg and Lamborghini. I'm a huge fan of v10 engines and manual transmission."
@@ -141,10 +141,10 @@ import Background from "../components/Background.astro";
           />
           <Interest
             title="Gaming"
-            description="Lately I've been playing a lot of Minecraft. I'm preparing to raid a Nether Fortress."
+            description="Lately I've been playing a lot of Minecraft. I just beat the ender dragon."
             image="/gamepad-2.svg"
           />
-        </div>
+        </ul>
       </section>
     </main>
     <Footer />
