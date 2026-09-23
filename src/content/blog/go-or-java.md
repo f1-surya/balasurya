@@ -1,5 +1,5 @@
 ---
-title: 'Go or Java'
+title: "Go or Java"
 description: "I rant about which language I should focus on"
 pubDate: "Oct 06 2024"
 ---

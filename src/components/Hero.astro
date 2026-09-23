@@ -1,0 +1,93 @@
+---
+import Nightscape from "./Nightscape.astro";
+import { AUTHOR } from "../consts";
+
+const year = new Date().getFullYear();
+---
+
+<section
+  class="relative flex min-h-svh flex-col justify-end overflow-hidden pt-(--nav-h)"
+  id="hero"
+>
+  <div class="absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
+    <span
+      class="pointer-events-none absolute -top-[26vw] -left-[12vw] h-[62vw] w-[62vw] rounded-full bg-[radial-gradient(circle,rgba(38,58,88,0.5),transparent_68%)] blur-[70px]"
+    ></span>
+    <span
+      class="pointer-events-none absolute -right-[8vw] -bottom-[12vw] h-[40vw] w-[58vw] rounded-full bg-[radial-gradient(circle,rgba(225,6,0,0.16),transparent_70%)] blur-[90px]"
+    ></span>
+    <div
+      class="absolute right-0 bottom-0 left-0 h-[min(46vh,26rem)] opacity-90"
+    >
+      <Nightscape />
+    </div>
+  </div>
+
+  <div
+    class="relative z-[1] mx-auto flex w-full max-w-(--maxw) flex-1 flex-col gap-[clamp(1.5rem,4vh,3rem)] px-(--gutter) pt-[clamp(1.5rem,8vh,5rem)] pb-[clamp(4.5rem,10vh,6.5rem)]"
+  >
+    <div class="flex animate-hero-fade justify-between gap-4">
+      <span
+        class="font-mono text-[0.7rem] tracking-[0.22em] text-muted uppercase"
+      >
+        Portfolio — {year}
+      </span>
+      <span
+        class="font-mono text-[0.7rem] tracking-[0.22em] text-muted uppercase"
+      >
+        {AUTHOR.location}
+      </span>
+    </div>
+
+    <h1 class="mt-auto min-w-0">
+      <span class="block overflow-hidden">
+        <span
+          class="block animate-hero-rise font-display text-[clamp(3.5rem,20vw,20rem)] leading-[0.78] font-semibold tracking-[-0.015em] whitespace-nowrap uppercase"
+        >
+          Balasurya
+        </span>
+      </span>
+    </h1>
+
+    <div
+      class="flex animate-hero-fade flex-wrap items-end justify-between gap-x-8 gap-y-5"
+    >
+      <div class="flex flex-[1_1_16rem] flex-col gap-[0.8rem]">
+        <p
+          class="m-0 flex items-center gap-[0.7rem] font-body text-[clamp(1.05rem,2.4vw,1.6rem)] font-semibold tracking-[0.34em] whitespace-nowrap uppercase"
+        >
+          <span
+            class="inline-block h-[0.6rem] w-[0.6rem] flex-none bg-accent"
+            aria-hidden="true"></span>
+          <span>{AUTHOR.role}</span>
+        </p>
+        <span
+          class="reveal-line block h-px w-full bg-[linear-gradient(90deg,var(--color-accent),rgba(225,6,0,0))]"
+          aria-hidden="true"></span>
+      </div>
+      <p
+        class="m-0 max-w-[28ch] text-right text-[clamp(1.05rem,1.6vw,1.35rem)] leading-[1.35] text-fg-dim max-[720px]:text-left"
+      >
+        {AUTHOR.line}
+      </p>
+    </div>
+  </div>
+
+  <a
+    class="absolute bottom-[clamp(1.25rem,4vh,2.5rem)] left-1/2 z-[2] flex -translate-x-1/2 flex-col items-center gap-[0.7rem] text-muted transition-colors duration-300 hover:text-fg max-[720px]:hidden"
+    href="#about"
+    aria-label="Scroll to about"
+  >
+    <span class="font-mono text-[0.72rem] tracking-[0.16em] uppercase"
+      >Scroll</span
+    >
+    <span
+      class="relative block h-[3.4rem] w-px overflow-hidden bg-line-2"
+      aria-hidden="true"
+    >
+      <span
+        class="absolute inset-x-0 top-0 h-[42%] animate-scroll-drop bg-accent"
+      ></span>
+    </span>
+  </a>
+</section>
