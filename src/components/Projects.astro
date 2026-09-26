@@ -30,10 +30,8 @@ const arrowClass =
           <article class="project group/project grid grid-cols-[1.05fr_1fr] items-center gap-[clamp(1.75rem,4vw,4rem)] border-t border-line py-[clamp(2.5rem,6vw,4.5rem)] first:border-t-0 first:pt-0 max-[820px]:grid-cols-1 max-[820px]:items-start">
             <div
               class:list={[
-                "group/visual reveal relative aspect-[4/3] border border-line transition-colors duration-500 hover:border-line-3 max-[820px]:aspect-[16/10]",
-                flip
-                  ? "order-2 max-[820px]:order-none"
-                  : "max-[820px]:order-none",
+                "group/visual reveal relative aspect-4/3 border border-line transition-colors duration-500 hover:border-line-3 max-[820px]:aspect-16/10",
+                flip ? "order-2 max-[820px]:order-0" : "max-[820px]:order-0",
               ]}
               style="--rx:0px;--ry:40px"
             >
@@ -42,9 +40,7 @@ const arrowClass =
 
             <div
               class:list={[
-                flip
-                  ? "order-1 max-[820px]:order-none"
-                  : "max-[820px]:order-none",
+                flip ? "order-1 max-[820px]:order-0" : "max-[820px]:order-0",
               ]}
             >
               <div class="reveal mb-2 flex items-baseline justify-between gap-4">
@@ -76,7 +72,7 @@ const arrowClass =
               </p>
 
               <ul
-                class="reveal mb-7 flex flex-wrap items-center font-mono text-[0.68rem] tracking-[0.1em] text-fg-dim uppercase [&>li+li::before]:px-[0.65em] [&>li+li::before]:text-accent [&>li+li::before]:content-['/']"
+                class="reveal mb-7 flex flex-wrap items-center font-mono text-[0.68rem] tracking-widest text-fg-dim uppercase [&>li+li::before]:px-[0.65em] [&>li+li::before]:text-accent [&>li+li::before]:content-['/']"
                 style="--delay:150ms"
               >
                 {project.stack.map((tech) => (

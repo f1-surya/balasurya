@@ -17,31 +17,25 @@ export const INTERESTS: Interest[] = [
   {
     title: "Formula 1",
     meta: "race weekends",
-    text: "Ask me about it and I will not stop talking. I follow the season race by race and enjoy the engineering as much as the racing.",
+    text: "Ask me about it and I will not stop talking. I'll die on the Max Verstappen is the best driver hill.",
     icon: "flag",
   },
   {
     title: "Films",
     meta: "all genres",
-    text: "I watch a lot of films and I'll give almost any genre a chance — quiet dramas, crime, science fiction, whatever the evening calls for. Atmosphere and craft matter to me more than the label.",
+    text: "I watch a lot of movies, nothing particular. I just want a film with a decent story and good screenplay. I am a fan of monologues, like Pacino at 'Scent of a Woman'.",
     icon: "film",
   },
   {
-    title: "Games",
-    meta: "survival",
-    text: "Mostly Minecraft lately. I recently made it to the end and defeated the ender dragon.",
-    icon: "gamepad",
-  },
-  {
     title: "Books",
-    meta: "sci-fi / literary",
-    text: "Science fiction, literary and contemporary fiction, and the occasional long fantasy epic. I like a big book that takes its time and earns it.",
+    meta: "still exploring",
+    text: "I've only recently started reading seriously, so I don't know what I like yet. My favorites so far are The Hobbit and Dune.",
     icon: "book",
   },
   {
     title: "Linux",
     meta: "open source",
-    text: "A long-time Linux user and an admirer of open source. The dotfiles are a project of their own at this point.",
+    text: "A long-time Linux user and an admirer of open source. Currently running Omarchy, my 5th distro.",
     icon: "terminal",
   },
 ];

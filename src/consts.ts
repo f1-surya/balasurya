@@ -5,7 +5,7 @@ export const SITE_URL = "https://surya-sigma.vercel.app";
 
 export const AUTHOR = {
   name: "Balasurya Ganesamoorthi",
-  shortName: "Balasurya",
+  shortName: "Surya",
   role: "Software Developer",
   line: "I love cars and I like to code.",
   location: "Virudhunagar, Tamilnadu, India",

@@ -13,9 +13,8 @@ export const NOW_UPDATED = "September 2026";
 export const NOW: NowItem[] = [
   {
     label: "Building",
-    value: "Collection Ledger",
-    detail:
-      "Pushing the collection-management app toward something I actually rely on.",
+    value: "Freelance",
+    detail: "Doing some freelance projects that I get through my network.",
   },
   {
     label: "Learning",
@@ -25,19 +24,14 @@ export const NOW: NowItem[] = [
   },
   {
     label: "Reading",
-    value: "Science fiction & literary",
+    value: "Dune: Messiah",
     detail:
-      "Working through a long sci-fi series and a few novels on the side; the next one is already on the way.",
+      "Just finished Dune. Waiting for Dune: Messiah to arrive. I'm also planning on reading The Postmaster by Rabindranath Tagore.",
   },
   {
     label: "Watching",
     value: "Formula 1",
-    detail: "Race weekends, whenever the calendar lands on one.",
-  },
-  {
-    label: "Exploring",
-    value: "Linux & dotfiles",
     detail:
-      "Tuning a configuration that does exactly what I need and nothing more.",
+      "I'll watch races when they're on. Its not so interesting this year due to the regs.",
   },
 ];
