@@ -1,65 +1,65 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
+import BaseLayout from "./BaseLayout.astro";
 import FormattedDate from "../components/FormattedDate.astro";
-import Background from "../components/Background.astro";
 
 type Props = CollectionEntry<"blog">["data"];
 
 const { title, description, pubDate, updatedDate } = Astro.props;
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead title={title} description={description} />
-    <style>
-      .title {
-        margin-bottom: 1em;
-        padding: 1em 0;
-        text-align: center;
-        line-height: 1;
-      }
+<BaseLayout
+  title={`${title} — Balasurya Ganesamoorthi`}
+  description={description}
+  activePage="blog"
+>
+  <article
+    class="pt-[calc(var(--nav-h)+clamp(2.5rem,7vw,5.5rem))] pb-[clamp(3rem,8vw,6rem)]"
+  >
+    <header
+      class="mx-auto mb-[clamp(2.5rem,6vw,4rem)] w-full max-w-(--maxw) px-(--gutter)"
+    >
+      <a
+        class="mb-[clamp(2rem,5vw,3rem)] inline-flex items-center gap-2 font-mono text-[0.64rem] tracking-[0.16em] text-muted uppercase transition-colors duration-300 hover:text-accent"
+        href="/blog"
+      >
+        <span aria-hidden="true">←</span> Writing
+      </a>
 
-      .title h1 {
-        margin: 0 0 0.5em 0;
-      }
+      <div
+        class="reveal mb-5 flex flex-wrap gap-x-5 gap-y-2 font-mono text-[0.66rem] tracking-[0.14em] text-muted uppercase"
+      >
+        <time datetime={pubDate.toISOString()}>
+          <FormattedDate date={pubDate} />
+        </time>
+        {
+          updatedDate && (
+            <span class="text-line-3">
+              Updated <FormattedDate date={updatedDate} />
+            </span>
+          )
+        }
+      </div>
 
-      .date {
-        margin-bottom: 0.5em;
-        color: rgb(var(--gray));
-      }
+      <h1
+        class="reveal mb-[0.4em] max-w-[18ch] font-display text-[clamp(2.6rem,8vw,6rem)] leading-[0.82] font-semibold uppercase"
+        style="--delay:60ms"
+      >
+        {title}
+      </h1>
+      <p
+        class="reveal mb-10 max-w-[54ch] text-[clamp(1.1rem,1.8vw,1.4rem)] text-fg-dim"
+        style="--delay:100ms"
+      >
+        {description}
+      </p>
+      <hr class="reveal-line h-px w-full origin-left border-0 bg-line" />
+    </header>
 
-      .last-updated-on {
-        font-style: italic;
-      }
-    </style>
-  </head>
-
-  <body class="scroll-smooth">
-    <Header />
-    <Background />
-    <main class="md:w-[720px]">
-      <article class="w-full px-4">
-        <div class="title">
-          <div class="date">
-            <FormattedDate date={pubDate} />
-            {
-              updatedDate && (
-                <div class="last-updated-on">
-                  Last updated on
-                  <FormattedDate date={updatedDate} />
-                </div>
-              )
-            }
-          </div>
-          <h1>{title}</h1>
-          <hr />
-        </div>
+    <div class="mx-auto flex w-full max-w-(--maxw) justify-start px-(--gutter)">
+      <div class="prose">
         <slot />
-      </article>
-    </main>
-    <Footer />
-  </body>
-</html>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

@@ -1,101 +1,75 @@
 ---
-import BaseHead from "../../components/BaseHead.astro";
-import Header from "../../components/Header.astro";
-import Footer from "../../components/Footer.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
-import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 import FormattedDate from "../../components/FormattedDate.astro";
-import Background from "../../components/Background.astro";
+import { getCollection } from "astro:content";
 
 const posts = (await getCollection("blog")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-    <style>
-      main {
-        padding: 0 1rem;
-      }
-      ul li {
-        width: calc(50% - 1rem);
-      }
-      ul li * {
-        text-decoration: none;
-        transition: 0.2s ease;
-      }
-      ul li:first-child {
-        width: 100%;
-        margin-bottom: 1rem;
-        text-align: center;
-      }
-      ul li:first-child .title {
-        font-size: 2.369rem;
-      }
-      ul li img {
-        margin-bottom: 0.5rem;
-        border-radius: 12px;
-      }
-      ul li a {
-        display: block;
-      }
-      .title {
-        margin: 0;
-        color: white;
-        line-height: 1;
-      }
-      .date {
-        margin: 0;
-        color: rgb(var(--gray));
-      }
-      ul li a:hover h4,
-      ul li a:hover .date {
-        color: rgb(var(--accent));
-      }
-      @media (max-width: 720px) {
-        ul {
-          gap: 0.5em;
-        }
-        ul li {
-          width: 100%;
-          text-align: center;
-        }
-        ul li:first-child {
-          margin-bottom: 0;
-        }
-        ul li:first-child .title {
-          font-size: 1.563em;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <Header />
-    <Background />
-    <main class="md:w-[900px]">
-      <section>
-        <ul class="flex flex-wrap gap-8 m-0 p-0 list-none">
-          {
-            posts.map((post) => (
-              <li>
-                <a href={`/blog/${post.id}/`} class="card">
-                  <h4 class="title font-bold">{post.data.title}</h4>
-                  <p class="text-[rgba(var(--gray-light))] mt-2">
+<BaseLayout
+  title="Writing — Balasurya Ganesamoorthi"
+  description="Notes on code, cars and whatever else I'm working through."
+  activePage="blog"
+>
+  <section
+    class="pt-[calc(var(--nav-h)+clamp(3rem,9vw,7rem))] pb-[clamp(3rem,8vw,6rem)]"
+  >
+    <div class="mx-auto w-full max-w-(--maxw) px-(--gutter)">
+      <header
+        class="reveal mb-[clamp(2.5rem,6vw,5rem)]"
+        style="--rx:-48px;--ry:0px"
+      >
+        <span
+          class="mb-4 block font-mono text-[0.66rem] tracking-[0.16em] text-accent-text uppercase"
+        >
+          Writing
+        </span>
+        <h1
+          class="mb-[0.35em] font-display text-[clamp(3rem,10vw,8rem)] leading-[0.82] font-semibold uppercase"
+        >
+          Notes &amp; updates.
+        </h1>
+        <p class="m-0 max-w-[44ch] text-fg-dim">
+          Occasional posts about programming, tools and whatever I happen to be
+          into at the time.
+        </p>
+      </header>
+
+      <ul class="m-0 list-none border-t border-line p-0">
+        {
+          posts.map((post, i) => (
+            <li
+              class="reveal border-b border-line"
+              style={`--delay:${i * 50}ms`}
+            >
+              <a
+                class="group/link grid grid-cols-[3rem_1fr_auto] items-baseline gap-[clamp(1rem,3vw,2.5rem)] py-[clamp(1.5rem,3vw,2.25rem)] transition-[padding] duration-500 hover:pl-3 max-[640px]:grid-cols-1 max-[640px]:gap-2"
+                href={`/blog/${post.id}/`}
+              >
+                <span class="font-mono text-[0.62rem] tracking-[0.16em] text-muted uppercase transition-colors duration-300 group-hover/link:text-accent-text max-[640px]:hidden">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span class="flex min-w-0 flex-col gap-[0.35rem]">
+                  <h2 class="font-display text-[clamp(1.8rem,4vw,3rem)] leading-[0.9] font-semibold uppercase transition-colors duration-300 group-hover/link:text-accent">
+                    {post.data.title}
+                  </h2>
+                  <span class="max-w-[52ch] text-[1.02em] text-fg-dim">
                     {post.data.description}
-                  </p>
-                  <p class="date">
-                    <FormattedDate date={post.data.pubDate} />
-                  </p>
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </section>
-    </main>
-    <Footer />
-  </body>
-</html>
+                  </span>
+                </span>
+                <time
+                  class="font-mono text-[0.62rem] tracking-[0.16em] whitespace-nowrap text-muted uppercase"
+                  datetime={post.data.pubDate.toISOString()}
+                >
+                  <FormattedDate date={post.data.pubDate} />
+                </time>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

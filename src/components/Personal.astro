@@ -1,0 +1,55 @@
+---
+import Section from "./Section.astro";
+import Icon from "./Icon.astro";
+import Nightscape from "./Nightscape.astro";
+import { INTERESTS } from "../data/personal";
+---
+
+<Section
+  id="personal"
+  index="05"
+  title="Personal"
+  kicker="Off the clock"
+  align="left"
+>
+  <Fragment slot="backdrop">
+    <div class="absolute inset-x-0 bottom-0 h-[70%] opacity-35">
+      <Nightscape />
+    </div>
+  </Fragment>
+
+  <p class="reveal mb-[clamp(2rem,4vw,3rem)] max-w-[48ch] text-fg-dim">
+    The things I actually spend my time on when I'm not writing software. They
+    tend to show up in the work anyway.
+  </p>
+
+  <div
+    class="grid grid-cols-2 gap-x-[clamp(1.5rem,3vw,3rem)] max-[640px]:grid-cols-1"
+  >
+    {
+      INTERESTS.map((interest, i) => (
+        <article
+          class="reveal group/interest border-t border-line py-[clamp(1.5rem,3vw,2.25rem)]"
+          style={`--delay:${i * 60}ms`}
+        >
+          <div class="mb-4 flex items-center justify-between gap-4">
+            <span class="inline-flex text-fg-dim transition-colors duration-300 group-hover/interest:text-accent">
+              <Icon name={interest.icon} />
+            </span>
+            {interest.meta && (
+              <span class="font-mono text-[0.6rem] tracking-[0.16em] text-muted uppercase">
+                {interest.meta}
+              </span>
+            )}
+          </div>
+          <h3 class="mb-[0.35em] font-display text-[clamp(1.6rem,3vw,2.3rem)] leading-[0.9] font-semibold uppercase">
+            {interest.title}
+          </h3>
+          <p class="m-0 max-w-[40ch] text-[1.02em] text-fg-dim">
+            {interest.text}
+          </p>
+        </article>
+      ))
+    }
+  </div>
+</Section>

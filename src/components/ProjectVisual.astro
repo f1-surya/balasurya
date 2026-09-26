@@ -1,0 +1,291 @@
+---
+import type { Motif } from "../data/projects";
+
+interface Props {
+  motif: Motif;
+  label?: string;
+}
+
+const { motif, label } = Astro.props;
+
+const gridX = Array.from({ length: 13 }, (_, i) => 60 + i * 57);
+const gridY = Array.from({ length: 9 }, (_, i) => 60 + i * 57);
+---
+
+<div
+  class="relative h-full w-full overflow-hidden bg-[radial-gradient(120%_100%_at_80%_0%,rgba(35,45,60,0.28),transparent_60%),linear-gradient(160deg,var(--color-surface-2),var(--color-surface))]"
+>
+  <svg
+    class="block h-full w-full transition-transform duration-1000 group-hover/visual:scale-[1.025]"
+    viewBox="0 0 800 560"
+    preserveAspectRatio="xMidYMid slice"
+    role="presentation"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <g class="stroke-line stroke-1">
+      {
+        gridX.map((x) => (
+          <line
+            x1={x}
+            y1="40"
+            x2={x}
+            y2="520"
+            vector-effect="non-scaling-stroke"
+          />
+        ))
+      }
+      {
+        gridY.map((y) => (
+          <line
+            x1="40"
+            y1={y}
+            x2="760"
+            y2={y}
+            vector-effect="non-scaling-stroke"
+          />
+        ))
+      }
+    </g>
+
+    {
+      motif === "ledger" && (
+        <g>
+          {Array.from({ length: 7 }, (_, i) => (
+            <rect
+              class:list={[
+                "fill-[rgba(232,232,232,0.07)] stroke-1",
+                i === 3
+                  ? "fill-[rgba(225,6,0,0.14)] stroke-accent"
+                  : "stroke-line-2",
+              ]}
+              x="110"
+              y={110 + i * 50}
+              height="16"
+              width={140 + ((i * 97) % 400)}
+            />
+          ))}
+          <line
+            class="stroke-accent stroke-1"
+            x1="110"
+            y1="470"
+            x2="690"
+            y2="470"
+          />
+        </g>
+      )
+    }
+
+    {
+      motif === "kanban" && (
+        <g>
+          <line
+            class="stroke-line-3 stroke-1"
+            x1="130"
+            y1="100"
+            x2="270"
+            y2="100"
+          />
+          <line
+            class="stroke-line-3 stroke-1"
+            x1="330"
+            y1="100"
+            x2="470"
+            y2="100"
+          />
+          <line
+            class="stroke-line-3 stroke-1"
+            x1="530"
+            y1="100"
+            x2="670"
+            y2="100"
+          />
+          {[130, 330, 530].map((x, col) => (
+            <g>
+              {Array.from({ length: 3 - col + 1 }, (_, i) => (
+                <rect
+                  class:list={[
+                    "stroke-1",
+                    col === 0 && i === 0
+                      ? "fill-[rgba(225,6,0,0.14)] stroke-accent"
+                      : "fill-[rgba(232,232,232,0.07)] stroke-line-2",
+                  ]}
+                  x={x}
+                  y={130 + i * 90}
+                  width="140"
+                  height="62"
+                />
+              ))}
+            </g>
+          ))}
+        </g>
+      )
+    }
+
+    {
+      motif === "terminal" && (
+        <g>
+          <rect
+            class="fill-[rgba(5,5,5,0.5)] stroke-line-2 stroke-1"
+            x="120"
+            y="120"
+            width="560"
+            height="320"
+          />
+          <line
+            class="stroke-line-2 stroke-1"
+            x1="120"
+            y1="168"
+            x2="680"
+            y2="168"
+          />
+          {[210, 250, 290, 330].map((y, i) => (
+            <rect
+              class:list={[
+                "stroke-1",
+                i === 3
+                  ? "fill-[rgba(225,6,0,0.14)] stroke-accent"
+                  : "fill-[rgba(232,232,232,0.07)] stroke-line-2",
+              ]}
+              x="160"
+              y={y}
+              height="8"
+              width={i === 0 ? 90 : i === 3 ? 230 : 300 - i * 40}
+            />
+          ))}
+          <rect class="fill-accent" x="160" y="368" width="14" height="16" />
+        </g>
+      )
+    }
+
+    {
+      motif === "signal" && (
+        <g>
+          {Array.from({ length: 22 }, (_, i) => {
+            const h = 30 + ((i * 53) % 210);
+            return (
+              <rect
+                class:list={[
+                  "stroke-1",
+                  i % 7 === 3
+                    ? "fill-[rgba(225,6,0,0.14)] stroke-accent"
+                    : "fill-[rgba(232,232,232,0.07)] stroke-line-2",
+                ]}
+                x={100 + i * 28}
+                y={300 - h / 2}
+                width="10"
+                height={h}
+              />
+            );
+          })}
+          <line
+            class="stroke-line-3 stroke-1"
+            x1="90"
+            y1="300"
+            x2="710"
+            y2="300"
+          />
+        </g>
+      )
+    }
+
+    {
+      motif === "network" && (
+        <g>
+          <line
+            class="stroke-line-3 stroke-1"
+            x1="150"
+            y1="160"
+            x2="330"
+            y2="260"
+          />
+          <line
+            class="stroke-line-3 stroke-1"
+            x1="330"
+            y1="260"
+            x2="520"
+            y2="170"
+          />
+          <line
+            class="stroke-line-3 stroke-1"
+            x1="330"
+            y1="260"
+            x2="360"
+            y2="430"
+          />
+          <line
+            class="stroke-line-3 stroke-1"
+            x1="520"
+            y1="170"
+            x2="660"
+            y2="320"
+          />
+          <line
+            class="stroke-line-3 stroke-1"
+            x1="360"
+            y1="430"
+            x2="660"
+            y2="320"
+          />
+          <line
+            class="stroke-accent stroke-1"
+            x1="150"
+            y1="160"
+            x2="520"
+            y2="170"
+          />
+          {[
+            [150, 160, 5],
+            [330, 260, 7],
+            [520, 170, 5],
+            [360, 430, 5],
+            [660, 320, 6],
+          ].map(([cx, cy, r], i) => (
+            <circle
+              class:list={[
+                i === 1 ? "fill-accent stroke-accent" : "fill-bg stroke-line-3",
+                "[stroke-width:1.5]",
+              ]}
+              cx={cx}
+              cy={cy}
+              r={r}
+            />
+          ))}
+        </g>
+      )
+    }
+
+    {
+      motif === "grid" && (
+        <g>
+          {Array.from({ length: 16 }, (_, i) => {
+            const c = i % 4;
+            const r = Math.floor(i / 4);
+            return (
+              <rect
+                class:list={[
+                  "stroke-1",
+                  i === 9
+                    ? "fill-[rgba(225,6,0,0.14)] stroke-accent"
+                    : "fill-[rgba(232,232,232,0.07)] stroke-line-2",
+                ]}
+                x={140 + c * 110}
+                y={110 + r * 90}
+                width="90"
+                height="72"
+              />
+            );
+          })}
+        </g>
+      )
+    }
+  </svg>
+
+  {
+    label && (
+      <span class="absolute bottom-[0.85rem] left-4 font-mono text-[0.6rem] tracking-[0.18em] text-muted uppercase">
+        {label}
+      </span>
+    )
+  }
+</div>

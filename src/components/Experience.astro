@@ -1,15 +1,53 @@
 ---
-interface Props {
-  title: string;
-  duration: string;
-  description: string;
-}
+import Section from "./Section.astro";
+import { EXPERIENCE } from "../data/experience";
 
-const {title, duration, description} = Astro.props;
+const stackClass =
+  "flex flex-wrap items-center font-mono text-[0.64rem] tracking-[0.1em] text-muted uppercase [&>li+li::before]:px-[0.6em] [&>li+li::before]:text-accent [&>li+li::before]:content-['/']";
 ---
 
-<div class="card">
-  <h4 class="font-bold">{title}</h4>
-  <p class="text-sm text-blue-400">{duration}</p>
-  <p>{description}</p>
-</div>
+<Section
+  id="experience"
+  index="03"
+  title="Experience"
+  kicker="Where I've worked"
+  align="left"
+>
+  <div>
+    {
+      EXPERIENCE.map((role, i) => {
+        const [start, end] = role.period.split("—").map((s) => s.trim());
+        return (
+          <article
+            class="reveal grid grid-cols-[minmax(8rem,0.85fr)_2fr] gap-[clamp(1.5rem,4vw,3.5rem)] border-t border-line py-[clamp(1.75rem,4vw,2.75rem)] first:border-t-0 first:pt-0 max-[720px]:grid-cols-1 max-[720px]:gap-4"
+            style={`--delay:${i * 80}ms`}
+          >
+            <div class="flex flex-col gap-[0.15rem] font-display text-[clamp(1.5rem,3vw,2.3rem)] leading-[0.85] font-semibold text-fg uppercase max-[720px]:flex-row max-[720px]:items-center max-[720px]:gap-[0.7rem]">
+              <span class="block">{start}</span>
+              <span
+                class="my-[0.35rem] h-px w-[1.6rem] bg-accent max-[720px]:my-0"
+                aria-hidden="true"
+              />
+              <span class="block">{end}</span>
+            </div>
+
+            <div>
+              <h3 class="mb-[0.3em] font-display text-[clamp(1.9rem,3.6vw,2.9rem)] leading-[0.9] font-semibold uppercase">
+                {role.company}
+              </h3>
+              <p class="mb-[0.9em] block font-mono text-[0.66rem] tracking-[0.16em] text-accent-text uppercase">
+                {role.role}
+              </p>
+              <p class="mb-[1.1em] max-w-[48ch] text-fg-dim">{role.summary}</p>
+              <ul class={stackClass}>
+                {role.stack.map((tech) => (
+                  <li class="flex items-center">{tech}</li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        );
+      })
+    }
+  </div>
+</Section>

@@ -1,0 +1,94 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+
+function makeRng(seed: number) {
+  let s = seed;
+  return () => {
+    s = (s * 1664525 + 1013904223) % 4294967296;
+    return s / 4294967296;
+  };
+}
+
+const rand = makeRng(11);
+
+const far = Array.from({ length: 34 }, () => {
+  const w = 24 + rand() * 68;
+  return { x: rand() * 1440, w, h: 50 + rand() * 130 };
+});
+
+const near = Array.from({ length: 20 }, () => {
+  const w = 46 + rand() * 96;
+  const x = rand() * 1440;
+  const h = 90 + rand() * 190;
+  const lights = Array.from({ length: Math.floor(rand() * 4) + 1 }, () => ({
+    x: x + 6 + rand() * Math.max(10, w - 14),
+    y: 420 - h + 14 + rand() * (h - 30),
+    warm: rand() > 0.18,
+  }));
+  return { x, w, h, lights };
+});
+---
+
+<svg
+  class:list={["block h-full w-full", className]}
+  viewBox="0 0 1440 420"
+  preserveAspectRatio="xMidYMax slice"
+  role="presentation"
+  aria-hidden="true"
+  focusable="false"
+>
+  <defs>
+    <linearGradient id="ns-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#050505" stop-opacity="0"></stop>
+      <stop offset="0.62" stop-color="#080a0d" stop-opacity="0.55"></stop>
+      <stop offset="1" stop-color="#0b0d11" stop-opacity="0.9"></stop>
+    </linearGradient>
+    <radialGradient id="ns-glow" cx="0.5" cy="1" r="0.62">
+      <stop offset="0" stop-color="#e3a06a" stop-opacity="0.24"></stop>
+      <stop offset="0.45" stop-color="#c24a3a" stop-opacity="0.08"></stop>
+      <stop offset="1" stop-color="#050505" stop-opacity="0"></stop>
+    </radialGradient>
+    <linearGradient id="ns-fade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#050505" stop-opacity="1"></stop>
+      <stop offset="1" stop-color="#050505" stop-opacity="0"></stop>
+    </linearGradient>
+  </defs>
+
+  <rect width="1440" height="420" fill="url(#ns-sky)"></rect>
+  <ellipse cx="720" cy="430" rx="820" ry="210" fill="url(#ns-glow)"></ellipse>
+
+  <g opacity="0.9">
+    {
+      far.map((b) => (
+        <rect x={b.x} y={420 - b.h} width={b.w} height={b.h} fill="#0b0c0f" />
+      ))
+    }
+  </g>
+
+  <g>
+    {
+      near.map((b) => (
+        <g>
+          <rect x={b.x} y={420 - b.h} width={b.w} height={b.h} fill="#070708" />
+          {b.lights.map((l) => (
+            <rect
+              x={l.x}
+              y={l.y}
+              width="2"
+              height="3"
+              fill={l.warm ? "#e3a06a" : "#e10600"}
+              opacity={l.warm ? 0.5 : 0.42}
+            />
+          ))}
+        </g>
+      ))
+    }
+  </g>
+
+  <rect y="300" width="1440" height="120" fill="url(#ns-fade)" opacity="0.9"
+  ></rect>
+</svg>

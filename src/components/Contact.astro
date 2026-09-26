@@ -1,0 +1,64 @@
+---
+import { SOCIALS } from "../consts";
+---
+
+<section
+  id="contact"
+  class="section relative overflow-hidden border-t border-line py-[clamp(5rem,11vw,11rem)]"
+  data-section
+  data-index="07"
+>
+  <span
+    class="pointer-events-none absolute bottom-[-30%] left-1/2 h-[60vw] w-[90vw] -translate-x-1/2 bg-[radial-gradient(circle,rgba(225,6,0,0.14),transparent_65%)]"
+    aria-hidden="true"></span>
+
+  <div class="relative mx-auto w-full max-w-(--maxw) px-(--gutter)">
+    <div
+      class="reveal flex w-full items-center gap-4"
+      style="--rx:-48px;--ry:0px"
+    >
+      <span
+        class="section-index font-display text-[clamp(2.25rem,5vw,4.5rem)] leading-[0.8] font-semibold tracking-[0.03em] text-transparent"
+      >
+        07
+      </span>
+      <span class="h-px flex-1 bg-line"></span>
+      <span
+        class="font-mono text-[0.7rem] tracking-[0.2em] text-muted uppercase"
+      >
+        Contact
+      </span>
+    </div>
+
+    <h2
+      class="reveal mt-[clamp(1.5rem,4vw,3rem)] mb-[clamp(2rem,5vw,3.5rem)] max-w-[16ch] font-display text-[clamp(3.2rem,13vw,11rem)] leading-[0.82] font-semibold uppercase"
+      style="--delay:80ms"
+    >
+      Let's build <span class="text-accent">something.</span>
+    </h2>
+
+    <nav
+      class="mt-[clamp(1rem,2vw,2rem)] grid grid-cols-[repeat(auto-fit,minmax(11rem,1fr))] gap-x-[clamp(1.5rem,3vw,3rem)] border-t border-line"
+      aria-label="Elsewhere"
+    >
+      {
+        SOCIALS.map((social, i) => (
+          <a
+            class="reveal group/social flex flex-col gap-[0.4rem] border-b border-line py-[1.1rem] transition-colors duration-300 hover:border-accent"
+            style={`--delay:${160 + i * 40}ms`}
+            href={social.href}
+            target="_blank"
+            rel="me noopener noreferrer"
+          >
+            <span class="font-display text-2xl leading-none font-semibold uppercase transition-colors duration-300 group-hover/social:text-accent">
+              {social.label}
+            </span>
+            <span class="font-mono text-[0.6rem] tracking-[0.1em] text-muted normal-case">
+              {social.handle}
+            </span>
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</section>

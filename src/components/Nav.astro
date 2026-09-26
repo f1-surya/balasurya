@@ -1,0 +1,126 @@
+---
+import { SECTIONS } from "../consts";
+
+interface Props {
+  activePage?: "home" | "blog";
+}
+
+const { activePage = "home" } = Astro.props;
+
+const linkClass =
+  "group/link relative inline-flex items-baseline gap-[0.4rem] py-[0.4rem] font-body text-[0.95rem] font-medium uppercase tracking-[0.05em] text-muted transition-colors duration-300 hover:text-fg [&.is-active]:text-fg after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-300 after:content-[''] [&.is-active]:after:scale-x-100";
+const numClass =
+  "font-mono text-[0.58rem] tracking-[0.08em] text-muted [.is-active_&]:text-accent-text";
+---
+
+<header
+  class="fixed top-0 right-0 left-0 z-[100] border-b border-transparent transition-[background-color,backdrop-filter,border-color] duration-500 [&.is-scrolled]:border-b-line [&.is-scrolled]:bg-[rgba(5,5,5,0.72)] [&.is-scrolled]:backdrop-blur-[14px] [&.is-scrolled]:backdrop-saturate-[1.2]"
+  data-nav
+  data-page={activePage}
+>
+  <div
+    class="absolute top-0 left-0 z-[2] h-[2px] w-full origin-left scale-x-0 bg-accent"
+    data-progress
+    aria-hidden="true"
+  >
+  </div>
+
+  <div
+    class="mx-auto flex h-(--nav-h) w-full max-w-(--maxw) items-center justify-between gap-8 px-(--gutter)"
+  >
+    <a
+      class="group/brand inline-flex items-center gap-[0.6rem] font-display text-[1.6rem] leading-none font-semibold tracking-[0.06em] whitespace-nowrap uppercase"
+      href="/"
+      aria-label="Balasurya — home"
+    >
+      <span
+        class="h-[0.5rem] w-[0.5rem] bg-accent transition-transform duration-500 ease-expo group-hover/brand:scale-x-[2.4]"
+        aria-hidden="true"></span>
+      <span class="translate-y-[0.08em]">Balasurya</span>
+    </a>
+
+    <nav
+      class="flex items-center gap-[clamp(0.9rem,1.8vw,1.9rem)] max-[1080px]:hidden"
+      aria-label="Sections"
+    >
+      {
+        SECTIONS.map((s) => (
+          <a class={linkClass} href={`/#${s.id}`} data-nav-link={s.id}>
+            <span class={numClass}>{s.index}</span>
+            <span>{s.nav}</span>
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="flex items-center gap-[1.1rem]">
+      {
+        activePage === "home" && (
+          <span
+            class="font-mono text-[0.62rem] tracking-[0.16em] text-muted uppercase max-[1080px]:hidden"
+            aria-hidden="true"
+          >
+            <span data-current>01</span>
+            <span class="mx-[0.3em] text-line-3">/</span>
+            {String(SECTIONS.length).padStart(2, "0")}
+          </span>
+        )
+      }
+      <a
+        class="border-b border-line-2 pb-[0.1rem] font-body text-[0.95rem] font-medium tracking-[0.05em] text-fg uppercase transition-colors duration-300 hover:border-accent hover:text-accent-text max-[420px]:hidden"
+        href="/blog">Writing</a
+      >
+      <button
+        class="hidden items-center gap-[0.6rem] font-mono text-[0.66rem] tracking-[0.16em] uppercase max-[1080px]:inline-flex"
+        data-menu-toggle
+        aria-expanded="false"
+        aria-controls="site-menu"
+      >
+        <span>Menu</span>
+        <span class="flex w-[1.3rem] flex-col gap-1" aria-hidden="true">
+          <span
+            class="h-px w-full bg-fg transition-transform duration-300 [[aria-expanded=true]_&]:translate-y-[2.5px] [[aria-expanded=true]_&]:rotate-[8deg]"
+          ></span>
+          <span
+            class="h-px w-full bg-fg transition-transform duration-300 [[aria-expanded=true]_&]:-translate-y-[2.5px] [[aria-expanded=true]_&]:-rotate-[8deg]"
+          ></span>
+        </span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div
+  class="invisible fixed inset-0 z-[95] flex -translate-y-4 items-center bg-[rgba(5,5,5,0.97)] px-(--gutter) pt-[calc(var(--nav-h)+1rem)] pb-8 opacity-0 transition-[opacity,transform,visibility] duration-500 [&.is-open]:visible [&.is-open]:translate-y-0 [&.is-open]:opacity-100"
+  id="site-menu"
+  data-menu
+  aria-hidden="true"
+>
+  <nav class="mx-auto flex w-full max-w-[40rem] flex-col" aria-label="Sections">
+    {
+      SECTIONS.map((s) => (
+        <a
+          class="flex items-baseline gap-4 border-b border-line py-2 font-display text-[clamp(2.5rem,14vw,4.5rem)] leading-[0.9] font-semibold text-fg uppercase transition-[color,padding] duration-300 hover:pl-[0.4rem] hover:text-accent"
+          href={`/#${s.id}`}
+          data-menu-link
+        >
+          <span class="font-mono text-[0.6rem] tracking-[0.16em] text-muted uppercase">
+            {s.index}
+          </span>
+          <span>{s.title}</span>
+        </a>
+      ))
+    }
+    <a
+      class="flex items-baseline gap-4 border-b border-line py-2 font-display text-[clamp(2.5rem,14vw,4.5rem)] leading-[0.9] font-semibold text-fg uppercase transition-[color,padding] duration-300 hover:pl-[0.4rem] hover:text-accent"
+      href="/blog"
+      data-menu-link
+    >
+      <span
+        class="font-mono text-[0.6rem] tracking-[0.16em] text-muted uppercase"
+        >→</span
+      >
+      <span class="text-muted">Writing</span>
+    </a>
+  </nav>
+</div>

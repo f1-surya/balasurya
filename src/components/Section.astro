@@ -1,0 +1,105 @@
+---
+interface Props {
+  id: string;
+  index: string;
+  title: string;
+  kicker?: string;
+  align?: "left" | "right";
+  wide?: boolean;
+}
+
+const { id, index, title, kicker, align = "left", wide = false } = Astro.props;
+const rx = align === "right" ? 48 : -48;
+const hasAside = Astro.slots.has("aside");
+const hasBackdrop = Astro.slots.has("backdrop");
+
+const bodyClass =
+  align === "right"
+    ? wide
+      ? "lg:col-start-3 lg:col-end-13"
+      : "lg:col-start-6 lg:col-end-13"
+    : wide
+      ? "lg:col-span-12"
+      : "lg:col-span-7";
+
+const asideClass =
+  align === "right"
+    ? "lg:col-span-5 lg:col-start-1 lg:row-start-1 lg:mt-0"
+    : "lg:col-start-8 lg:col-end-13 lg:row-start-1 lg:mt-0";
+
+const headClass =
+  align === "right"
+    ? "items-start text-left lg:items-end lg:text-right"
+    : "items-start text-left";
+
+const topClass =
+  align === "right" ? "flex-row lg:flex-row-reverse" : "flex-row";
+---
+
+<section
+  id={id}
+  class="section relative overflow-x-clip border-t border-line py-[clamp(5rem,11vw,11rem)]"
+  data-section
+  data-index={index}
+>
+  {
+    hasBackdrop && (
+      <div
+        class="pointer-events-none absolute inset-0 z-0 overflow-hidden"
+        aria-hidden="true"
+      >
+        <slot name="backdrop" />
+      </div>
+    )
+  }
+  <div class="relative mx-auto w-full max-w-(--maxw) px-(--gutter)">
+    <div class="grid grid-cols-12 gap-x-[clamp(1rem,2vw,2rem)]">
+      <div class:list={["col-span-12 min-w-0", bodyClass]}>
+        <header
+          class:list={[
+            "mb-[clamp(2.25rem,4vw,3.75rem)] flex flex-col gap-[0.4rem]",
+            headClass,
+          ]}
+        >
+          <div
+            class:list={["reveal flex w-full items-center gap-4", topClass]}
+            style={`--rx:${rx}px;--ry:0px`}
+          >
+            <span
+              class="section-index font-display text-[clamp(2.25rem,5vw,4.5rem)] leading-[0.8] font-semibold tracking-[0.03em] text-transparent"
+            >
+              {index}
+            </span>
+            <span class="h-px flex-1 bg-line"></span>
+            {
+              kicker && (
+                <span class="font-mono text-[0.7rem] tracking-[0.2em] text-muted uppercase">
+                  {kicker}
+                </span>
+              )
+            }
+          </div>
+          <h2
+            class="reveal font-display text-[clamp(2.6rem,8vw,6.5rem)] leading-[0.82] font-semibold tracking-[0.005em] text-fg uppercase"
+            style={`--rx:${rx}px;--ry:0px;--delay:80ms`}
+          >
+            {title}
+          </h2>
+        </header>
+        <slot />
+      </div>
+      {
+        hasAside && (
+          <div
+            class:list={[
+              "col-span-12 mt-[clamp(2.5rem,8vw,4rem)] self-start",
+              asideClass,
+            ]}
+          >
+            <slot name="aside" />
+          </div>
+        )
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,42 @@
+---
+import Section from "./Section.astro";
+import { TECH_GROUPS } from "../data/technologies";
+---
+
+<Section
+  id="technologies"
+  index="04"
+  title="Technologies"
+  kicker="What I work with"
+  align="right"
+>
+  <p class="reveal mb-[clamp(2rem,4vw,3rem)] max-w-[46ch] text-fg-dim">
+    The tools I reach for most often. I pick them for the problem, not the other
+    way around.
+  </p>
+
+  <div>
+    {
+      TECH_GROUPS.map((group, i) => (
+        <div
+          class="reveal grid grid-cols-[minmax(9rem,1fr)_3fr] items-baseline gap-[clamp(1rem,3vw,2.5rem)] border-t border-line py-[clamp(1.25rem,2.5vw,1.9rem)] first:border-t-0 first:pt-0 max-[640px]:grid-cols-1 max-[640px]:gap-[0.6rem]"
+          style={`--delay:${i * 50}ms`}
+        >
+          <div class="flex flex-col gap-[0.3rem]">
+            <h3 class="font-display text-[clamp(1.6rem,3vw,2.2rem)] leading-[0.9] font-semibold uppercase">
+              {group.label}
+            </h3>
+            <span class="font-mono text-[0.58rem] tracking-[0.16em] text-muted uppercase">
+              {group.note}
+            </span>
+          </div>
+          <ul class="flex flex-wrap items-baseline font-body text-[clamp(1.15rem,2vw,1.55rem)] leading-[1.5] font-medium text-fg [&>li+li::before]:px-[0.55em] [&>li+li::before]:font-normal [&>li+li::before]:text-accent [&>li+li::before]:content-['/']">
+            {group.items.map((item) => (
+              <li class="flex items-baseline">{item}</li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+</Section>

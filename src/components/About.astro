@@ -1,0 +1,80 @@
+---
+import Section from "./Section.astro";
+import { AUTHOR } from "../consts";
+import { Image } from "astro:assets";
+
+const year = new Date().getFullYear();
+
+const facts = [
+  { label: "Based", value: "Virudhunagar, Tamilnadu" },
+  { label: "Focus", value: "Interfaces · APIs · Tooling" },
+  { label: "Experience", value: "3+ years, web" },
+];
+---
+
+<Section id="about" index="01" title="About" kicker="Who I am" align="left">
+  <h3
+    class="reveal mb-[clamp(1.75rem,4vw,2.75rem)] max-w-[22ch] font-display text-[clamp(2rem,4.6vw,3.6rem)] leading-[0.86] font-semibold uppercase"
+  >
+    I build for the web — <span class="text-accent">front to back</span>, with
+    an eye for how it feels.
+  </h3>
+
+  <div class="max-w-[54ch] text-fg-dim">
+    <p class="reveal" style="--delay:60ms">
+      I'm Balasurya, a software developer from Tamilnadu, India. I've spent the
+      last couple of years shipping interfaces with TypeScript and React, and
+      services with Node and Go.
+    </p>
+    <p class="reveal" style="--delay:120ms">
+      I care more about the craft than the stack: fast interfaces, honest code,
+      and tools that stay out of the way. My favourite work is usually the thing
+      I built because it annoyed me that it didn't exist yet.
+    </p>
+  </div>
+
+  <dl
+    class="mt-[clamp(2.5rem,5vw,3.5rem)] grid grid-cols-[repeat(auto-fit,minmax(11rem,1fr))] gap-6 border-t border-line pt-6"
+  >
+    {
+      facts.map((fact, i) => (
+        <div
+          class="reveal flex flex-col gap-[0.4rem]"
+          style={`--delay:${140 + i * 60}ms`}
+        >
+          <dt class="font-mono text-[0.6rem] tracking-[0.16em] text-muted uppercase">
+            {fact.label}
+          </dt>
+          <dd class="m-0 font-display text-2xl leading-none font-medium tracking-[0.01em] uppercase">
+            {fact.value}
+          </dd>
+        </div>
+      ))
+    }
+  </dl>
+
+  <Fragment slot="aside">
+    <figure class="reveal m-0" style="--rx:48px;--ry:0px">
+      <div
+        class="group/figure relative overflow-hidden border border-line-2 bg-surface after:pointer-events-none after:absolute after:inset-0 after:bg-[linear-gradient(190deg,rgba(225,6,0,0.2),rgba(5,5,5,0.35)_46%,rgba(5,5,5,0.82))] after:content-['']"
+      >
+        <Image
+          src="/MyPic.jpeg"
+          alt="Portrait of Balasurya Ganesamoorthi"
+          width={720}
+          height={720}
+          loading="lazy"
+          class="aspect-square w-full object-cover [filter:grayscale(0.6)_brightness(0.78)_contrast(1.08)] transition-[transform,filter] duration-700 group-hover/figure:scale-[1.03] group-hover/figure:[filter:grayscale(0.25)_brightness(0.92)_contrast(1.05)]"
+        />
+        <span
+          class="absolute top-0 left-0 z-[1] h-[2px] w-[2.5rem] bg-accent"
+          aria-hidden="true"></span>
+      </div>
+      <figcaption
+        class="mt-[0.85rem] block font-mono text-[0.6rem] tracking-[0.16em] text-muted uppercase"
+      >
+        {AUTHOR.name} — {year}
+      </figcaption>
+    </figure>
+  </Fragment>
+</Section>
