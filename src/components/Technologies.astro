@@ -30,7 +30,7 @@ import { TECH_GROUPS } from "../data/technologies";
               {group.note}
             </span>
           </div>
-          <ul class="flex flex-wrap items-baseline font-body text-[clamp(1.15rem,2vw,1.55rem)] leading-[1.5] font-medium text-fg [&>li+li::before]:px-[0.55em] [&>li+li::before]:font-normal [&>li+li::before]:text-accent [&>li+li::before]:content-['/']">
+          <ul class="flex flex-wrap items-baseline font-body text-[clamp(1.15rem,2vw,1.55rem)] leading-normal font-medium text-fg [&>li+li::before]:px-[0.55em] [&>li+li::before]:font-normal [&>li+li::before]:text-accent [&>li+li::before]:content-['/']">
             {group.items.map((item) => (
               <li class="flex items-baseline">{item}</li>
             ))}

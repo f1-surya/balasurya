@@ -9,15 +9,7 @@ export const TECH_GROUPS: TechGroup[] = [
   {
     label: "Languages",
     note: "what I reach for",
-    items: [
-      "TypeScript",
-      "JavaScript",
-      "Go",
-      "Java",
-      "Kotlin",
-      "Dart",
-      "Python",
-    ],
+    items: ["TypeScript", "Go", "Dart", "Java", "Python"],
   },
   {
     label: "Web",
@@ -32,14 +24,7 @@ export const TECH_GROUPS: TechGroup[] = [
   {
     label: "Backend",
     note: "APIs and services",
-    items: [
-      "Node.js",
-      "Express",
-      "Spring Boot",
-      "Gin",
-      "REST APIs",
-      "Drizzle ORM",
-    ],
+    items: ["Node.js", "Express", "Spring Boot", "Echo", "Drizzle ORM"],
   },
   {
     label: "Data",
