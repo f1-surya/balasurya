@@ -17,12 +17,6 @@ export const NOW: NowItem[] = [
     detail: "Doing some freelance projects that I get through my network.",
   },
   {
-    label: "Learning",
-    value: "Go & systems fundamentals",
-    detail:
-      "HTTP, git internals, and small games written from scratch to see how things work.",
-  },
-  {
     label: "Reading",
     value: "Dune: Messiah",
     detail:

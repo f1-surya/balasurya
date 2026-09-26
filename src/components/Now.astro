@@ -8,7 +8,7 @@ import { NOW, NOW_UPDATED } from "../data/now";
     class="reveal mb-[clamp(1.75rem,3vw,2.5rem)] inline-flex items-center gap-[0.6rem] font-mono text-[0.62rem] tracking-[0.16em] text-muted uppercase"
   >
     <span
-      class="relative h-2 w-2 flex-none rounded-full bg-accent after:absolute after:-inset-[0.35rem] after:animate-now-pulse after:rounded-full after:border after:border-accent after:content-['']"
+      class="relative h-2 w-2 flex-none rounded-full bg-accent after:absolute after:inset-[-0.35rem] after:animate-now-pulse after:rounded-full after:border after:border-accent after:content-['']"
       aria-hidden="true"></span>
     <span>Updated {NOW_UPDATED}</span>
   </div>
@@ -17,7 +17,7 @@ import { NOW, NOW_UPDATED } from "../data/now";
     {
       NOW.map((item, i) => (
         <div
-          class="reveal grid grid-cols-[minmax(7rem,0.7fr)_2.5fr] items-baseline gap-[clamp(1rem,3vw,2.5rem)] border-t border-line py-[clamp(1.25rem,2.5vw,1.9rem)] first:border-t-0 first:pt-0 max-[640px]:grid-cols-1 max-[640px]:gap-[0.5rem]"
+          class="reveal grid grid-cols-[minmax(7rem,0.7fr)_2.5fr] items-baseline gap-[clamp(1rem,3vw,2.5rem)] border-t border-line py-[clamp(1.25rem,2.5vw,1.9rem)] first:border-t-0 first:pt-0 max-[640px]:grid-cols-1 max-[640px]:gap-2"
           style={`--delay:${i * 55}ms`}
         >
           <dt class="font-mono text-[0.62rem] tracking-[0.16em] text-muted uppercase">
