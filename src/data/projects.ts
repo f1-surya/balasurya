@@ -40,12 +40,16 @@ export const PROJECTS: Project[] = [
     links: [
       { label: "Live", href: "https://cl-svelte.vercel.app" },
       {
-        label: "v2 · Next.js",
+        label: "v3 · Next.js",
         href: "https://github.com/f1-surya/collection-ledger",
       },
       {
-        label: "v1 · Java API",
+        label: "v2 · Java API",
         href: "https://github.com/f1-surya/collection-ledger-api",
+      },
+      {
+        label: "v1 · React-Native",
+        href: "https://github.com/f1-surya/collection-ledger-lite",
       },
     ],
   },
@@ -67,7 +71,7 @@ export const PROJECTS: Project[] = [
     description:
       "A website designed and built for TNMDA to present their work, services, community programs, and ways to get involved.",
     year: "2026",
-    stack: ["Astro", "TypeScript"],
+    stack: ["Next.js", "TypeScript"],
     motif: "signal",
     links: [{ label: "Live", href: "https://tnmda.org" }],
   },

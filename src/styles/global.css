@@ -13,38 +13,6 @@
 }
 
 @font-face {
-  font-family: "Barlow Condensed";
-  src: url("/fonts/barlow-condensed-400.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Barlow Condensed";
-  src: url("/fonts/barlow-condensed-500.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Barlow Condensed";
-  src: url("/fonts/barlow-condensed-600.woff2") format("woff2");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Barlow Condensed";
-  src: url("/fonts/barlow-condensed-700.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
   font-family: "JetBrains Mono";
   src: url("/fonts/JetBrainsMono-Regular.woff2") format("woff2");
   font-weight: 400;
@@ -295,7 +263,7 @@
   .prose {
     max-width: 66ch;
     font-size: clamp(1.08rem, 1rem + 0.3vw, 1.22rem);
-    line-height: 1.75;
+    line-height: 1.4;
     color: var(--color-fg);
   }
 
@@ -306,7 +274,7 @@
   .prose p,
   .prose ul,
   .prose ol {
-    margin: 0 0 1.6em;
+    margin: 0 0 .9em;
   }
 
   .prose h2,
